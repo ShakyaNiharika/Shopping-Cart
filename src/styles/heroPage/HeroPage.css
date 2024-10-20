@@ -1,0 +1,10 @@
+.heroImage{
+    display: flex;
+    justify-content: center;
+    height: 25rem;
+}
+.image-container {
+    display: flex;
+    justify-content: center; 
+    margin-top: 20px; 
+  }

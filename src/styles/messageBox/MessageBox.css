@@ -1,0 +1,62 @@
+.message-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align at the top */
+    z-index: 1000; /* Ensure it is above other elements */
+    padding-top: 20px; /* Add some padding to keep it away from the very top */
+}
+  
+  .message-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    max-width: 500px;
+    width: auto;
+  }
+  
+  .message-content button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .modal-content button:hover {
+    background-color: #0056b3;
+  }
+
+  .button-group {
+    display: flex; 
+    justify-content: center; 
+    gap: 10px;
+    margin-top: 20px; 
+  }
+  
+  .confirm-button {
+    background-color: #28a745; 
+    color: white;
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px;
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+  }
+  .cancel-button {
+    background-color: #dc3545; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px;
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+  }
+  

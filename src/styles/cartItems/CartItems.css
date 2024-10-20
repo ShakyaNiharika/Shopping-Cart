@@ -1,0 +1,102 @@
+
+.CartItem {
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start;
+    padding: 20px;
+    gap: 1.5rem;
+     /* Items will wrap to the next row if necessary */
+    flex-wrap: wrap;
+}
+
+.innerText {
+    flex: 1; /* Each item will take equal space */
+    border: 1px solid #ddd; 
+    padding: 20px;
+    border-radius: 10px; 
+    background-color: #fff; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05); 
+    max-width: 250px; 
+}
+
+.innerText:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); /* Stronger shadow on hover */
+}
+
+.CartItem img {
+    width: 100%; 
+    height: auto; 
+    border-radius: 8px; 
+    margin-bottom: 10px;
+}
+
+.CartItem p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #333; /* Darker text color for better contrast */
+}
+
+/* Smaller font size for description */
+.disc {
+    font-size: 13px; 
+    color: #777; /* Lighter color for description */
+    margin: 5px 0;
+    line-height: 1.5; 
+}
+
+.shopping {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Center items vertically */
+    padding: 2rem 6.3rem;
+    color: #444;
+    font-size: 18px; /* Slightly larger font for better readability */
+    border-bottom: 2px solid #eee; /* Add a subtle bottom border */
+}
+
+/* Search Container */
+.searchContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem; /* Space below the search bar */
+}
+
+.searchInput {
+    width: 40rem;
+    height: 40px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Add a stronger shadow */
+    transition: box-shadow 0.3s ease; /* Smooth shadow transition */
+}
+
+.searchInput:focus {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on focus */
+}
+
+/* View all section */
+.viewall {
+    text-align: right;
+    margin-right: 8rem;
+    margin-top: -30px;
+    padding: 10px;
+}
+
+.viewall p {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #007bff; /* Blue color for link-like style */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.viewall p:hover {
+    color: #0056b3; /* Darker blue on hover */
+    text-decoration: underline; /* Underline on hover for emphasis */
+}
