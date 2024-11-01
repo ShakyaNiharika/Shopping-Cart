@@ -4,35 +4,23 @@ import Button from "../button/Button";
 import { Icon } from "@iconify/react";
 import MessageBox from "../messageBox/MessageBox";
 
-const AddtoCarItems = ({ cart = [], setCart }) => {
+const AddtoCarItems = ({
+  cart = [],
+  setCart,
+  handledecrement,
+  handleincrement,
+}) => {
   const [showMessageBox, setShowMessageBox] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
 
-  const handledecrement = (id) => {
-    const updatedCart = cart
-      .map((item) => {
-        if (item.id === id) {
-          return { ...item, quantity: item.quantity - 1 };
-        }
-        return item;
-      })
-      .filter((item) => item.quantity > 0);
+  useEffect(() => {
+    const initialTile = "Home";
+    document.title = "Add To Cart Items";
 
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
-
-  const handleincrement = (id) => {
-    const updatedCart = cart.map((item) => {
-      if (item.id === id) {
-        return { ...item, quantity: item.quantity + 1 };
-      }
-      return item;
-    });
-
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
+    return () => {
+      document.title = initialTile;
+    };
+  }, []);
 
   const confirmDelete = (id) => {
     setItemToDelete(id);

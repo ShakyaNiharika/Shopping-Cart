@@ -84,3 +84,7 @@ button:hover {
 button:active {
     transform: translateY(1px); /* Subtle push effect on click */
 }
+.quantity-control{
+  display: flex;
+  gap: 13px;
+}

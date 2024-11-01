@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center; 
     align-items: flex-start;
-    padding: 20px;
+    padding: 12px;
     gap: 1.5rem;
      /* Items will wrap to the next row if necessary */
     flex-wrap: wrap;

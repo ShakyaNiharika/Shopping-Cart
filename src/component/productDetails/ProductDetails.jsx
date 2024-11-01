@@ -6,16 +6,25 @@ import { useState, useEffect } from "react";
 import MessageBox from "../messageBox/MessageBox";
 import Products from "../../pages/products/Products";
 
-const ProductDetails = ({ product, cart, setCart }) => {
+const ProductDetails = ({
+  product,
+  cart,
+  setCart,
+  handledecrement,
+  handleincrement,
+}) => {
   const [message, setMessage] = useState("");
 
   const [visibilityOfMessage, setVisibilityOfMessage] = useState(false);
-
+  console.log(handleincrement, "increment");
+  console.log(handledecrement, "decrement");
   const handleAddToCart = () => {
     const existingItemIndex = cart.findIndex((item) => item.id === product.id);
 
     if (existingItemIndex > -1) {
-      setMessage("Product is already in the cart.");
+      // setMessage("Product is already in the cart.");
+      handledecrement(product.id);
+      handleincrement(product.id);
     } else {
       const updatedCart = [...cart, { ...product, quantity: 1 }];
       setCart(updatedCart, "updated");
@@ -34,6 +43,24 @@ const ProductDetails = ({ product, cart, setCart }) => {
     setVisibilityOfMessage(false);
   };
 
+  const handleDecrement = () => {
+    console.log("I am clicked");
+  };
+
+  // Check if the product is already in the cart
+  const IsintheCart = cart.find((item) => item.id === product.id);
+  console.log(IsintheCart, "in the cart");
+
+  useEffect(() => {
+    const initialtitle = "Shopping";
+    document.title = "Product Details";
+
+    //Cleam Up Function
+    return () => {
+      document.title = initialtitle;
+    };
+  }, []);
+
   return (
     <div>
       <div className="productDetails">
@@ -51,7 +78,15 @@ const ProductDetails = ({ product, cart, setCart }) => {
           <hr />
           <p className="price">Price: {product?.price}</p>
           <p>Color: {product?.color}</p>
-          <Button title="Add To Cart" onClick={handleAddToCart} />
+          {IsintheCart ? (
+            <div className="quantity-control">
+              <Button title="-" onClick={() => handledecrement(product.id)} />
+              {IsintheCart?.quantity}
+              <Button title="+" onClick={() => handleincrement(product.id)} />
+            </div>
+          ) : (
+            <Button title="Add To Cart" onClick={handleAddToCart} />
+          )}
           {visibilityOfMessage && (
             <MessageBox message={message} onClose={handleClose} />
           )}
