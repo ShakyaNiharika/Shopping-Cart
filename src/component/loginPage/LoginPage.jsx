@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../../styles/loginPage/LoginPage.css";
 import Input from "../input/Input";
 import Button from "../button/Button";
-import { AuthContext } from "../authContext/AuthContext";
+import { AuthContext } from "../context/authContext/AuthContext";
+import useAuth from "../cutomHook/useAuthcompo/useAuth";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -11,10 +12,14 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Get login function and user state from context
-  const { login, user } = useContext(AuthContext);
-  console.log(user);
+  const { user, login } = useAuth();
+  console.log(login, "logindata");
+
+  const from = location.state?.from?.pathname || "/";
+  console.log(from, "redirectData");
 
   // Handle form submission
   const handleLogin = (e) => {
@@ -22,27 +27,19 @@ const LoginPage = () => {
     setError(""); // Clear any previous errors
 
     // Attempt login
-    const success = login(username, password);
-    console.log(success);
+    const { success, data } = login(username, password);
     if (!success) {
       setError("Invalid username or password");
     } else {
+      localStorage.setItem("user", JSON.stringify(data.username));
       setSuccessMessage("Login Successfull");
       // Delay navigation for 1.5 seconds
       setTimeout(() => {
-        navigate("/");
+        navigate(from, { replace: true });
       }, 1500);
     }
   };
-  //
-  //   const handleinputchange = () => {
-  //     //     // const { name, value } = e.target.value;
-  //     //     // if (name === "email") {
-  //     //     //   setEmail(value);
-  //     //     // } else if (name === "password") {
-  //     //     //   setPassword(value);
-  //     //     // }
-  //   };
+
   return (
     <div className="loginPage-container">
       {user ? (

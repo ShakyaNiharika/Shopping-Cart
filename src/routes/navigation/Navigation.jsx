@@ -7,8 +7,9 @@ import Cart from "../../component/cart/Cart";
 import AllProducts from "../../pages/allProducts/AllProducts";
 import ErrorPage from "../../component/errorPage/ErrorPage";
 import LoginPage from "../../component/loginPage/LoginPage";
-import { AuthProvider } from "../../component/authContext/AuthContext";
+import { AuthProvider } from "../../component/context/authContext/AuthContext";
 import UsePosts from "../../pages/customhooks/UsePosts";
+import ProtectedRoute from "../../component/protectedRoute/ProtectedRoute";
 
 const Navigation = () => {
   return (
@@ -18,7 +19,14 @@ const Navigation = () => {
           <Route path="/" element={<Home />} />
           <Route path="/products/:id" element={<Products />} />
           <Route path="/allproducts" element={<AllProducts />} />
-          <Route path="/addtocart" element={<AddtoCart />} />
+          <Route
+            path="/addtocart"
+            element={
+              <ProtectedRoute element={AddtoCart} /> // Updated to match ProtectedRoute usage
+            }
+          />
+          {/* <Route path="/addtocart" element={<AddtoCart />} /> */}
+
           <Route path="/loginPage" element={<LoginPage />} />
           <Route path="/CustomHook" element={<UsePosts />} />
           <Route path="*" element={<ErrorPage />} />

@@ -1,6 +1,6 @@
 // src/components/PostList.js
 import React from "react";
-import usePosts from "../usePosts/usePosts";
+import usePosts from "../cutomHook/usePosts/usePosts";
 
 const PostList = () => {
   // Use the hook with the API URL
