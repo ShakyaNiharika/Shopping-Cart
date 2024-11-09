@@ -1,19 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import CartData from "../../data/cartData/CartData.js";
 import CartItems from "../cartitems/CartItems.jsx";
 import "../../styles/cartItems/CartItems.css";
 import { title, title2 } from "../../constant/title/Title";
 import Input from "../input/Input";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { ProductContext } from "../context/productContext/ProductContext.jsx";
 
 const Cart = ({ showSearch, showall, viewall }) => {
+  console.log(showall, "true or false?");
   const navigate = useNavigate();
   // const [searchQuery, setSearchQuery] = useState("");
   let [searchParams, setSearchParams] = useSearchParams();
+  const { state, dispatch } = useContext(ProductContext);
+  console.log(state, "dispatcheddddd state");
   const searchQuery = searchParams.get("search") || "";
   const [cartItems, setCartItems] = useState(CartData);
   const inputRef = useRef(null);
   console.log(cartItems, "it is empty");
+  console.log("in product =>>>>state", state);
 
   useEffect(() => {
     const initialtitle = "Home";
@@ -33,7 +38,39 @@ const Cart = ({ showSearch, showall, viewall }) => {
       setCartItems([]);
     };
   }, []);
+  const fetcProductList = async () => {
+    // setLoading(true);
+    console.log("in effect");
 
+    dispatch({
+      type: "Set_ProductData",
+      payload: {
+        product: CartData,
+      },
+    });
+  };
+  // Fetch product list and initialize filtered items based on URL search query
+  useEffect(() => {
+    fetcProductList();
+    // Trigger filter based on the current search query from the URL
+    dispatch({
+      type: "FILTER_ProductData",
+      payload: { searchInputField: searchQuery },
+    });
+  }, [searchQuery]);
+
+  // const handleslice = () => {
+  //   dispatch({
+  //     type: "SEARCH_PRODUCTData",
+  //     payload: {
+  //       product: CartData,
+  //     },
+  //   });
+  // };
+  // useEffect(() => {
+  //   fetcProductList();
+  //   // handleslice();
+  // }, []);
   //  Handle input changes
   // const handleSearchChange = (event) => {
   //   setSearchQuery(event.target.value.toLowerCase()); // Convert to lowercase for case-insensitive search
@@ -42,17 +79,21 @@ const Cart = ({ showSearch, showall, viewall }) => {
   const handleSearchChange = (event) => {
     event.preventDefault();
     const param = event.target.value.toLowerCase();
-    setSearchParams({ search: param }); // Convert to lowercase for case-insensitive search
+    console.log({ param });
+
+    // dispatch({
+    //   type: "FILTER_ProductData",
+    //   payload: {
+    //     searchInputField: searchQuery,
+    //   },
+    // });
+    setSearchParams({ search: param });
   };
 
   //Handle Search Field
-  const filteredCartItems = CartData.filter((item) =>
-    item.title.toLowerCase().includes(searchQuery)
-  );
-
-  const displaycart = showall
-    ? filteredCartItems
-    : filteredCartItems.slice(0, 5);
+  const filteredCartItems = state.filtredProductLsit;
+  console.log(filteredCartItems, "filtered or not?");
+  const displaycart = showall ? filteredCartItems : state.slicedProductLsit;
 
   console.log(displaycart, "display");
   const handleviewall = () => {

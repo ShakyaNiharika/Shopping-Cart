@@ -3,11 +3,13 @@ import "../../styles/cartItems/CartItems.css";
 import { useNavigate } from "react-router-dom";
 
 const CartItems = ({ item }) => {
+  console.log("Item object:", item);
   const navigate = useNavigate();
 
   const handleImageClick = () => {
     navigate(`/products/${item.id}`);
   };
+
   return (
     <div key={item.id}>
       <div class="innerText">

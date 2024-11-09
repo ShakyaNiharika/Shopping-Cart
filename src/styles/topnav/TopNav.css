@@ -83,14 +83,9 @@ margin-top: -23px;
 
 }
 .logout{
+  color: white;
 margin-left: 320px;
-margin-top: -23px;
+margin-top: -20px;
 background-color: none;
 }
-.c-container{
-margin-top: 2rem;
-}
- /* .wrap{
-  display: flex;
-  gap: 2px;
- } */
+

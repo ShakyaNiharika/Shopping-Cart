@@ -4,7 +4,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const initialstate = {
-    user: JSON.parse(localStorage.getItem("user")) || null, // Corrected parsing
+    user: JSON.parse(localStorage.getItem("user")) || null,
   };
 
   const LOGIN = "LOGIN";
@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
       case LOGIN:
         console.log("static");
         console.log(action, "action");
-        return { ...state, user: action.payload }; // Corrected payload property
+        return { ...state, user: action.payload };
       case LOGOUT:
         console.log("logout");
         console.log(action, "logout-action");
@@ -28,19 +28,19 @@ export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authreducer, initialstate);
 
   //Load user data from localStorage when the app loads
-  // useEffect(() => {
-  //   if (state.user) {
-  //     localStorage.setItem("user", JSON.stringify(state.user));
-  //   } else {
-  //     console.log("removing");
-  //     localStorage.removeItem("user");
-  //   }
-  // }, [state.user]);
+  useEffect(() => {
+    if (state.user) {
+      localStorage.setItem("user", JSON.stringify(state.user));
+    } else {
+      console.log("removing");
+      localStorage.removeItem("user");
+    }
+  }, [state.user]);
 
   const login = (username, password) => {
     if (username === "Reema" && password === "reema123") {
       const userData = { username: "Reema" };
-      dispatch({ type: LOGIN, payload: userData }); // Corrected dispatch action
+      dispatch({ type: LOGIN, payload: userData });
       return {
         success: true,
         data: {
@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     // Removed unnecessary parameters
-    dispatch({ type: LOGOUT }); // Corrected dispatch action
+    dispatch({ type: LOGOUT });
   };
 
   return (

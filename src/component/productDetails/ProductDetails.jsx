@@ -30,7 +30,7 @@ const ProductDetails = ({
       setCart(updatedCart, "updated");
       setMessage("Product added to the cart successfully!");
       localStorage.setItem("cart", JSON.stringify(updatedCart));
-      //     console.log(cart, "hereeee");
+      console.log(cart, "heree?ee");
     }
     setVisibilityOfMessage(true);
   };

@@ -68,5 +68,45 @@
     color: green;
    font-size: 2rem;
   }
+
+  .checkout-box {
+    width: 400px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    text-align: right;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute; /* Positioning it absolutely within .cart-container */
+    right: 430px; /* 20px from the right side of .cart-container */
+}
+
+.totals p {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.amount {
+    font-weight: bold;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #48902a;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.checkout-btn:hover {
+    background-color: #48902a;
+}
   
   

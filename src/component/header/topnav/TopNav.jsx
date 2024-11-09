@@ -70,7 +70,9 @@ const TopNav = ({ cart = [], setCart }) => {
           <p className="username">
             {user ? `hello ${user.username} !` : "Hello Guest"}
           </p>
-          <Button className="logout" onClick={handleLogout} title="Log out" />
+          <p className="logout" onClick={handleLogout}>
+            Log out
+          </p>
         </div>
       </div>
     </div>
